@@ -40,10 +40,11 @@ def get_review_files_list(review_url):
     return result
 
 
-def upload_review(review_url, input_file, review_file_name):
+def upload_review(review_url, input_file, review_file_name, origin_file):
     command = [
         'ash', '--no-color',
         '--input', input_file,
+        '--origin', origin_file,
         review_url, 'review'
     ]
 

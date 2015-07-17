@@ -130,6 +130,7 @@ class Review(object):
             self._review_url,
             editor.get_current_file_path(),
             entry.get_name_in_review(),
+            entry.get_origin_path()
         )
 
         ash.get_review_into_file(
