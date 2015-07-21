@@ -14,7 +14,8 @@ def get_review_into_file(review_url, review_file_name, target_name):
             review_url, 'review',
             review_file_name,
             '--output', target_name
-        ]
+        ],
+        stderr=subprocess.STDOUT
     )
 
 
@@ -25,7 +26,8 @@ def get_review_files_list(review_url):
         [
             'ash', '--no-color',
             review_url, 'ls'
-        ]
+        ],
+        stderr=subprocess.STDOUT
     )
 
     for rawFileEntry in rawFilesList.strip().split('\n'):
