@@ -37,39 +37,39 @@ map <silent> <leader>c :py ashium.commit()<CR>
 map <silent> <leader>o :py ashium.drop_changes()<CR>
 ```
 
-# Integration to other editor
+# Integration into other editor
 
 There is currently no multi-editor support in the ashium, but architecture is
 fine enough to make it possible.
 
-New source file should be created under pythonx/editor/<editor>.py with
+New source file should be created under `pythonx/editor/<editor>.py` with
 following methods declared:
 
-* `cd(<dirname>)` -- editor should change current directory to the specified;
-* `get_current_file_path()` -- returns full path to the currently opened file;
-* `reopen_current_file()` -- editor should reopen currently opened file
+* `cd(<dirname>)` — editor should change current directory to the specified;
+* `get_current_file_path()` — returns full path to the currently opened file;
+* `reopen_current_file()` — editor should reopen currently opened file
   discarding all changes;
-* `run_in_foreground(<python_function>)` -- editor should block and run
+* `run_in_foreground(<python_function>)` — editor should block and run
   specified function in the foreground;
-* `save_current_file()` -- editor should store currently opened file on the
+* `save_current_file()` — editor should store currently opened file on the
   storage;
-* `<view_state> = get_window_view_state()` -- python dict with following fields
+* `<view_state> = get_window_view_state()` — python dict with following fields
   should be returned:
-  ** `topline` -- number of the first line of the file shown in editor window;
-  ** `leftcol` -- number of the first column, that is visible in editor window;
-  ** `skipcol` -- should be equal to 0 (vim specific);
-* `move_cursor(<line>, <column>, <view_state>)` -- editor should move cursor
+  * `topline` — number of the first line of the file shown in editor window;
+  * `leftcol` — number of the first column, that is visible in editor window;
+  * `skipcol` — should be equal to 0 (vim specific);
+* `move_cursor(<line>, <column>, <view_state>)` — editor should move cursor
   to the specified `<line>` and `<column>`, possibly keeping view state
   described by `<view_state>` (can be `None`, in that case no view state should
   be preserved);
-* `(<line>, <column>) = get_cursor()` -- editor should return current cursor
+* `(<line>, <column>) = get_cursor()` — editor should return current cursor
  position, denoted in the tuple `(<line>, <column>)`;
-* `on_load_file_in_dir(<dirname>, <python_expression>)` -- editor should bind
+* `on_load_file_in_dir(<dirname>, <python_expression>)` — editor should bind
   specified `<python_expression>` on opening file in the `<dirname>`;
-* `on_idle(<python_expression>)` -- editor should bind specified python
+* `on_idle(<python_expression>)` — editor should bind specified python
   expression and run it if user do not do any actions for some period of time
   (editor specific);
-* `on_file_close(<python_expression>) -- editor should bind specified
+* `on_file_close(<python_expression>)` — editor should bind specified
   expression and run it **before** current file is closed;
 
 Then, you should instruct your editor to run following code after reading
@@ -80,5 +80,5 @@ ashium.try_to_load_from_current_file()
 ```
 
 Until ashium is not ready for multi-editor support, manual intervention
-required to the file pythonx/ashium/editor/__init__.py. Just alter `from ...`
+required to the file `pythonx/ashium/editor/__init__.py`. Just alter `from ...`
 line in that file to load your editor module instead of `vim`.
