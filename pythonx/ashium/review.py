@@ -15,10 +15,11 @@ OVERVIEW = ''
 
 class Review(object):
 
-    def __init__(self, review_url):
+    def __init__(self, review_url, autoupdate=False):
         self._temp_dir = tempfile.mkdtemp(".ashium")
         self._review_url = review_url
         self._entries = {}
+        self._autoupdate = autoupdate
 
         os.makedirs(self.get_files_path())
         os.makedirs(self.get_origin_files_path())
@@ -158,7 +159,8 @@ class Review(object):
     def _setup_buffer(self):
         self._save_origin()
 
-        editor.on_idle("ashium._active_review.update_current_buffer()")
+        if self._autoupdate:
+            editor.on_idle("ashium._active_review.update_current_buffer()")
         editor.on_file_close("ashium._active_review.commit()")
 
     def _add_loaded_file(self, file_name):

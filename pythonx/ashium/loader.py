@@ -27,7 +27,7 @@ def load_from_url(url, file_name=None):
     if file_name is not None:
         entry = active_review._add_loaded_file(file_name)
 
-        shutil.move(editor.get_current_file_path(), entry.get_file_path())
+        shutil.copy(editor.get_current_file_path(), entry.get_file_path())
 
     active_review.load()
 

@@ -1,5 +1,6 @@
 # coding=utf8
 
+import editor
 import subprocess
 import re
 
@@ -44,26 +45,15 @@ def get_review_files_list(review_url):
 
 def upload_review(review_url, input_file, review_file_name, origin_file):
     command = [
-        'ash', '--no-color',
+        'ash', '-i', '--no-color',
         '--input', input_file,
         '--origin', origin_file,
         review_url, 'review'
     ]
 
+    # shutil.j
+
     if review_file_name is not None:
         command.append(review_file_name)
 
-    process = subprocess.Popen(
-        command,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
-    )
-
-    stdout, stderr = process.communicate()
-
-    if process.returncode > 0 and process.returncode != 2:
-        raise Exception(
-            'ash returned error:' +
-            '\nSTDERR\n' + stderr +
-            '\nSTDOUT\n' + stdout
-        )
+    editor.command("silent! !" + " ".join(command))
