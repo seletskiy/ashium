@@ -51,8 +51,6 @@ def upload_review(review_url, input_file, review_file_name, origin_file):
         review_url, 'review'
     ]
 
-    # shutil.j
-
     if review_file_name is not None:
         command.append(review_file_name)
 
