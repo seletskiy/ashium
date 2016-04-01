@@ -143,6 +143,7 @@ class Review(object):
         self._save_origin(entry.get_file_path())
 
         editor.reopen_current_file()
+        editor.redraw()
 
     def get_files_path(self):
         return os.path.join(self.get_local_path(), 'files')

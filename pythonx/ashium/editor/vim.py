@@ -139,3 +139,7 @@ def run_in_foreground(task):
 
 def get_current_file_path():
     return vim.current.buffer.name
+
+
+def redraw():
+    command('redraw!')
