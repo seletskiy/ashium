@@ -7,9 +7,9 @@ augroup ashium
             \ syn match DiffComment "^#.*" containedin=ALL |
             \ syn match DiffCommentIgnore "^###.*" containedin=DiffComment |
             \ syn match DiffAdded "\(^###.*\s\)\@<=A" containedin=DiffCommentIgnore |
-            \ syn match DiffChanged "\(^###.*\s\)\@<=M" containedin=DiffCommentIgnore |
-            \ syn match DiffChanged "\(^###.*\s\)\@<=R" containedin=DiffCommentIgnore |
-            \ syn match DiffRemoved "\(^###.*\s\)\@<=D" containedin=DiffCommentIgnore |
+            \ syn match DiffChanged "\(^###\W\+\s\)\@<=M" containedin=DiffCommentIgnore |
+            \ syn match DiffChanged "\(^###\W\+\s\)\@<=R" containedin=DiffCommentIgnore |
+            \ syn match DiffRemoved "\(^###\W\+\s\)\@<=D" containedin=DiffCommentIgnore |
             \ syn match DiffCommentIgnore "^###.*" containedin=DiffComment |
             \ syn match DiffInfo "^---.*" containedin=ALL |
             \ syn match DiffInfo "^+++.*" containedin=ALL |
