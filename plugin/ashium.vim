@@ -6,7 +6,7 @@ augroup ashium
     au FileType diff
             \ syn match DiffComment "^#.*" containedin=ALL |
             \ syn match DiffCommentIgnore "^###.*" containedin=DiffComment |
-            \ syn match DiffAdded "\(^###.*\s\)\@<=A" containedin=DiffCommentIgnore |
+            \ syn match DiffAdded "\(^###\W\+\s\)\@<=A" containedin=DiffCommentIgnore |
             \ syn match DiffChanged "\(^###\W\+\s\)\@<=M" containedin=DiffCommentIgnore |
             \ syn match DiffChanged "\(^###\W\+\s\)\@<=R" containedin=DiffCommentIgnore |
             \ syn match DiffRemoved "\(^###\W\+\s\)\@<=D" containedin=DiffCommentIgnore |
