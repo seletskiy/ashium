@@ -143,3 +143,7 @@ def get_current_file_path():
 
 def redraw():
     command('redraw!')
+
+
+def is_current_file_modified():
+    return vim.eval('&modified') == '1'

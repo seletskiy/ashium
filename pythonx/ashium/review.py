@@ -123,6 +123,9 @@ class Review(object):
         os.unlink(theirs_file)
 
     def commit(self):
+        if not editor.is_current_file_modified():
+            return
+
         editor.save_current_file()
 
         entry = self.get_entry(editor.get_current_file_path())
