@@ -167,7 +167,7 @@ class Review(object):
             editor.on_idle("ashium._active_review.update_current_buffer()")
 
         editor.on_file_close("ashium._active_review.commit()")
-        editor.rememember_file_state()
+        editor.on_file_changed("ashium._active_review._on_file_changed()")
 
     def _add_loaded_file(self, file_name):
         entry = review_entry.Entry(self, file_name)
@@ -175,3 +175,6 @@ class Review(object):
         self._entries[entry.get_file_path()] = entry
 
         return entry
+
+    def _on_file_changed(self):
+        editor.set_file_modified()

@@ -147,8 +147,15 @@ def redraw():
 
 def is_current_file_modified():
     return vim.eval('&modified') == '1' \
-        or vim.eval('b:ashium_changedtick') != vim.eval('b:changedtick')
+        or vim.eval(
+            'exists("b:ashium_modified") ? b:ashium_modified : "0"'
+        ) == '1'
 
 
-def rememember_file_state():
-    command('let b:ashium_changedtick = b:changedtick')
+def on_file_changed(code):
+    command("au TextChanged <buffer> py {}".format(code))
+    command("au TextChangedI <buffer> py {}".format(code))
+
+
+def set_file_modified():
+    command('let b:ashium_modified = 1')
