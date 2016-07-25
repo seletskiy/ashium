@@ -165,7 +165,9 @@ class Review(object):
 
         if self._autoupdate:
             editor.on_idle("ashium._active_review.update_current_buffer()")
+
         editor.on_file_close("ashium._active_review.commit()")
+        editor.rememember_file_state()
 
     def _add_loaded_file(self, file_name):
         entry = review_entry.Entry(self, file_name)
