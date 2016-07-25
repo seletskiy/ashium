@@ -95,16 +95,19 @@ def save_current_file():
 
 def reopen_current_file():
     command('silent edit!')
+    _remember_changedtick()
 
 
 def open_file(file_name):
     # reopen file in place of current buffer
     command('bw! | edit! {}'.format(file_name))
     command('filetype detect')
+    _remember_changedtick()
 
 
 def on_file_close(code):
     command("au BufWinLeave <buffer> py {}".format(code))
+    _remember_changedtick()
 
 
 def move_cursor(line, column, view_state=None):
@@ -146,4 +149,9 @@ def redraw():
 
 
 def is_current_file_modified():
-    return vim.eval('&modified') == '1'
+    return vim.eval('&modified') == '1' \
+        or vim.eval('b:ashium_changedtick') != vim.eval('b:changedtick')
+
+
+def _remember_changedtick():
+    command('let b:ashium_changedtick = b:changedtick')
