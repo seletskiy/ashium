@@ -59,6 +59,7 @@ class Review(object):
 
     def update_current_buffer(self):
         self.update_file(editor.get_current_file_path())
+        editor.write_message("[ashium] review is up-to-date")
 
     def load_current_buffer_from_remote(self):
         self.update_file(editor.get_current_file_path(), force=True)

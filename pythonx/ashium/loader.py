@@ -23,7 +23,7 @@ def load_from_current_file():
 
 
 def load_from_url(url, file_name=None):
-    active_review = review.Review(url)
+    active_review = review.Review(url, autoupdate=True)
     if file_name is not None:
         entry = active_review._add_loaded_file(file_name)
 
